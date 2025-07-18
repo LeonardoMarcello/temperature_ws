@@ -1,4 +1,4 @@
 *
 
 !.gitignore
-!src/temperature_ros
+!src/temperature_ros/*
