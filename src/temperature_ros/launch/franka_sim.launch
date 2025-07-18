@@ -1,0 +1,7 @@
+<launch>
+    <!-- Launch franka controller -->
+    <include file="$(find panda_moveit_config)/launch/demo_gazebo.launch">
+        <arg name="load_gripper" value="false" />
+    </include>
+    
+</launch>

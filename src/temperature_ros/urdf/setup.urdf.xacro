@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='utf-8'?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_qb">
+
+<!-- <xacro:arg name="hand" default="false" />  Ori -->
+<!--<xacro:arg name="hand" default="true" />-->
+<xacro:arg name="gazebo" default="true" /> 
+<xacro:include filename="$(find franka_description)/robots/panda/panda.urdf.xacro"/> 
+
+<!-- Import the QB Hand and connect it to the created link 
+<xacro:include filename="$(find qb_hand_description)/urdf/qbhand.urdf.xacro"/>
+-->
+<!-- Create a link and a joint to connect the last link of the panda arm with the base of the qb hand
+<link name="world"/>
+<joint name="fixed" type="fixed">
+    <parent link="world"/>
+    <child link="root_link"/>
+</joint>  -->
+
+
+
+
+  <xacro:property name="table_x" value="0.6"/>
+  <xacro:property name="table_y" value="0.5"/>
+  <xacro:property name="table_z" value="0.01"/>
+
+  <link name="table_link">
+    <visual>
+      <origin xyz="-${table_x/3} 0 -${table_z/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${table_x} ${table_y} ${table_z}"/>
+      </geometry>
+      <color rgba="0.5 0.0 0.0 0.5"/>
+    </visual>
+    <collision>
+      <origin xyz="-${table_x/3} 0 -${table_z/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${table_x} ${table_y} ${table_z}"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <link name="left_margin">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1.0 0.001 1.0"/>
+      </geometry>
+      <color rgba="0.5 0.0 0.0 0.5"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1.0 0.001 1.0"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <link name="right_margin">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1.0 0.001 1.0"/>
+      </geometry>
+      <color rgba="0.5 0.0 0.0 0.5"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <box size="1.0 0.001 1.0"/>
+      </geometry>
+    </collision>
+  </link> 
+  
+  <link name="upper_margin">
+    <visual>
+      <origin xyz="-${table_x/3} 0 -${table_z/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${table_x} ${table_y} ${table_z}"/>
+      </geometry>
+      <color rgba="0.5 0.0 0.0 0.5"/>
+    </visual>
+    <collision>
+      <origin xyz="-${table_x/3} 0 -${table_z/2}" rpy="0 0 0"/>
+      <geometry>
+        <box size="${table_x} ${table_y} ${table_z}"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="table_to_world" type="fixed">
+      <parent link="world"/>
+      <child link="table_link"/>
+      <origin  xyz="${2*table_x/3} 0.0 -${table_z/2}" rpy="0.0 0.0 0.0"/> 
+  </joint>
+  
+  <joint name="right_margin_to_table" type="fixed">
+      <parent link="world"/>
+      <child link="right_margin"/>
+      <origin  xyz="${table_x/2} ${table_y/2 - 0.09} ${0.5-0.0565}" rpy="0.0 0.0 0.0"/>
+  </joint> 
+  
+  <joint name="left_margin_to_table" type="fixed">
+      <parent link="world"/>
+      <child link="left_margin"/>
+      <origin  xyz="${table_x/2} -${table_y/2 - 0.09} ${0.5-0.0565}" rpy="0.0 0.0 0.0"/>
+  </joint> 
+  
+  <joint name="upper_margin_to_table" type="fixed">
+      <parent link="world"/>
+      <child link="upper_margin"/>
+      <origin  xyz="${2*table_x/3} 0.0 ${2*table_y-0.0965}" rpy="0.0 0.0 0.0"/>
+  </joint>
+</robot>
+
+

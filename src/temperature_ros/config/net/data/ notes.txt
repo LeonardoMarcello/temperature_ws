@@ -1,0 +1,361 @@
+Dataset
+    - ori: directories containing original Dataset
+            exp_materials_08072025093311.csv
+            exp_materials_08072025103259.csv
+            exp_materials_08072025124749.csv
+            exp_materials_08072025132512.csv
+            exp_materials_08072025140035.csv
+            exp_materials_08072025141957.csv
+
+    - tain: csv containg dataset to use in training, each csv for a class
+            alluminio.csv
+            vetro.csv
+            legno.csv
+            plastica.csv
+
+            4x10x(20) = 600
+                -> to do: + 5 per oggetto
+
+    - test: csv containg dataset to use in testing, each csv for a class  
+            alluminio.csv
+            vetro.csv
+            legno.csv
+            plastica.csv
+
+            4x(10+5) = 60
+                -> to do: + 10 per oggetto
+                -> to do: + 5 per oggetto simile 
+    
+    
+    
+Training
+        - v2_alpv best training on: 
+                Dataset: 600 e 60
+                n_epochs = 300
+                batch_size = 5
+                learning_rate = 1e-4
+                gamma = 0.95
+                Final: Epoch [300/300], Loss: 0.0366, Val. Loss: 0.0359 (full trainin below)
+        - v3_alpv (input on 2 features signal and its derivative) training on: 
+                Dataset: 910 e 90
+                n_epochs = 1000
+                batch_size = 10
+                learning_rate = 1e-4
+                gamma = 1
+                
+                Final: Epoch [1000/1000], Loss: 1.0094, Val. Loss: 0.9073
+                        + altre 100 (batch = 5)
+                                Epoch [100/100], Loss: 0.7802, Accuracy: 268%, Val. Loss: 0.7665
+                        + altre 500 (batch = 5)
+                                Epoch [100/100], Loss: 0.7802, Accuracy: 268%, Val. Loss: 0.7665
+
+
+Test
+        - disponibili
+          30 21 24 23 -> 98 curve
+
+        - ideale
+          25 25 25 25 -> 100 curve
+------------------------------------------------------------
+v2_alpv
+
+[Checkpoint] Epoch [1/300], Loss: 1.3885, Accuracy: 108%, Val. Loss: 1.3861
+Epoch [2/300], Loss: 1.3860, Accuracy: 92%, Val. Loss: 1.3842
+Epoch [3/300], Loss: 1.3841, Accuracy: 116%, Val. Loss: 1.3762
+Epoch [4/300], Loss: 1.3779, Accuracy: 76%, Val. Loss: 1.3674
+Epoch [5/300], Loss: 1.3586, Accuracy: 84%, Val. Loss: 1.3329
+Epoch [6/300], Loss: 1.2543, Accuracy: 128%, Val. Loss: 1.4194
+Epoch [7/300], Loss: 1.3767, Accuracy: 88%, Val. Loss: 1.3345
+Epoch [8/300], Loss: 1.1041, Accuracy: 128%, Val. Loss: 0.9519
+Epoch [9/300], Loss: 0.9640, Accuracy: 152%, Val. Loss: 0.8959
+Epoch [10/300], Loss: 0.9075, Accuracy: 128%, Val. Loss: 0.8599
+Epoch [11/300], Loss: 0.9016, Accuracy: 152%, Val. Loss: 0.8924
+Epoch [12/300], Loss: 0.9222, Accuracy: 128%, Val. Loss: 1.1261
+Epoch [13/300], Loss: 1.1331, Accuracy: 144%, Val. Loss: 1.5118
+Epoch [14/300], Loss: 0.9105, Accuracy: 156%, Val. Loss: 0.8171
+Epoch [15/300], Loss: 0.8063, Accuracy: 148%, Val. Loss: 0.7639
+Epoch [16/300], Loss: 0.6934, Accuracy: 136%, Val. Loss: 0.5813
+Epoch [17/300], Loss: 0.5280, Accuracy: 164%, Val. Loss: 0.4770
+Epoch [18/300], Loss: 0.8928, Accuracy: 164%, Val. Loss: 0.8990
+Epoch [19/300], Loss: 0.6232, Accuracy: 152%, Val. Loss: 0.4683
+Epoch [20/300], Loss: 0.4309, Accuracy: 140%, Val. Loss: 0.3828
+Epoch [21/300], Loss: 0.3419, Accuracy: 184%, Val. Loss: 0.3039
+Epoch [22/300], Loss: 0.2975, Accuracy: 136%, Val. Loss: 0.3320
+Epoch [23/300], Loss: 0.2660, Accuracy: 232%, Val. Loss: 0.2121
+Epoch [24/300], Loss: 0.2898, Accuracy: 180%, Val. Loss: 0.1861
+Epoch [25/300], Loss: 0.2058, Accuracy: 128%, Val. Loss: 0.1671
+Epoch [26/300], Loss: 0.4506, Accuracy: 140%, Val. Loss: 1.6314
+Epoch [27/300], Loss: 1.3364, Accuracy: 128%, Val. Loss: 0.3587
+Epoch [28/300], Loss: 0.3223, Accuracy: 192%, Val. Loss: 0.1837
+Epoch [29/300], Loss: 0.1854, Accuracy: 168%, Val. Loss: 0.1738
+Epoch [30/300], Loss: 0.1692, Accuracy: 132%, Val. Loss: 0.1577
+Epoch [31/300], Loss: 0.3294, Accuracy: 184%, Val. Loss: 0.1533
+Epoch [32/300], Loss: 0.1585, Accuracy: 192%, Val. Loss: 0.1446
+Epoch [33/300], Loss: 0.1460, Accuracy: 196%, Val. Loss: 0.1382
+Epoch [34/300], Loss: 0.1350, Accuracy: 172%, Val. Loss: 0.1297
+Epoch [35/300], Loss: 0.2234, Accuracy: 200%, Val. Loss: 0.7050
+Epoch [36/300], Loss: 0.3410, Accuracy: 244%, Val. Loss: 0.1993
+Epoch [37/300], Loss: 0.1498, Accuracy: 176%, Val. Loss: 0.1210
+Epoch [38/300], Loss: 0.1218, Accuracy: 100%, Val. Loss: 0.1157
+Epoch [39/300], Loss: 0.1188, Accuracy: 184%, Val. Loss: 0.1105
+Epoch [40/300], Loss: 0.1120, Accuracy: 148%, Val. Loss: 0.1062
+Epoch [41/300], Loss: 0.1077, Accuracy: 200%, Val. Loss: 0.1028
+Epoch [42/300], Loss: 0.1070, Accuracy: 204%, Val. Loss: 0.0984
+Epoch [43/300], Loss: 0.1027, Accuracy: 240%, Val. Loss: 0.0948
+Epoch [44/300], Loss: 0.0971, Accuracy: 164%, Val. Loss: 0.1067
+Epoch [45/300], Loss: 0.0955, Accuracy: 156%, Val. Loss: 0.0980
+Epoch [46/300], Loss: 0.0911, Accuracy: 184%, Val. Loss: 0.0867
+Epoch [47/300], Loss: 0.0880, Accuracy: 244%, Val. Loss: 0.0840
+Epoch [48/300], Loss: 0.0869, Accuracy: 144%, Val. Loss: 0.0815
+Epoch [49/300], Loss: 0.0856, Accuracy: 132%, Val. Loss: 0.0790
+Epoch [50/300], Loss: 0.0823, Accuracy: 172%, Val. Loss: 0.0773
+[Checkpoint] Epoch [51/300], Loss: 0.0788, Accuracy: 212%, Val. Loss: 0.0747
+Epoch [52/300], Loss: 0.0790, Accuracy: 156%, Val. Loss: 0.0725
+Epoch [53/300], Loss: 0.0879, Accuracy: 172%, Val. Loss: 0.2859
+Epoch [54/300], Loss: 0.1075, Accuracy: 116%, Val. Loss: 0.0693
+Epoch [55/300], Loss: 0.0733, Accuracy: 120%, Val. Loss: 0.0680
+Epoch [56/300], Loss: 0.0695, Accuracy: 180%, Val. Loss: 0.0808
+Epoch [57/300], Loss: 0.0702, Accuracy: 192%, Val. Loss: 0.0696
+Epoch [58/300], Loss: 0.0692, Accuracy: 176%, Val. Loss: 0.0863
+Epoch [59/300], Loss: 0.0662, Accuracy: 128%, Val. Loss: 0.0856
+Epoch [60/300], Loss: 0.0674, Accuracy: 144%, Val. Loss: 0.0872
+Epoch [61/300], Loss: 0.0640, Accuracy: 148%, Val. Loss: 0.0816
+Epoch [62/300], Loss: 0.0630, Accuracy: 168%, Val. Loss: 0.0737
+Epoch [63/300], Loss: 0.0628, Accuracy: 236%, Val. Loss: 0.0827
+Epoch [64/300], Loss: 0.0703, Accuracy: 188%, Val. Loss: 0.0582
+Epoch [65/300], Loss: 0.0594, Accuracy: 156%, Val. Loss: 0.0567
+Epoch [66/300], Loss: 0.0595, Accuracy: 152%, Val. Loss: 0.0558
+Epoch [67/300], Loss: 0.0596, Accuracy: 168%, Val. Loss: 0.0549
+Epoch [68/300], Loss: 0.0578, Accuracy: 176%, Val. Loss: 0.0541
+Epoch [69/300], Loss: 0.0567, Accuracy: 164%, Val. Loss: 0.0536
+Epoch [70/300], Loss: 0.0561, Accuracy: 148%, Val. Loss: 0.0525
+Epoch [71/300], Loss: 0.0560, Accuracy: 116%, Val. Loss: 0.0518
+Epoch [72/300], Loss: 0.0552, Accuracy: 132%, Val. Loss: 0.0510
+Epoch [73/300], Loss: 0.0532, Accuracy: 136%, Val. Loss: 0.0507
+Epoch [74/300], Loss: 0.0539, Accuracy: 164%, Val. Loss: 0.0497
+Epoch [75/300], Loss: 0.0528, Accuracy: 204%, Val. Loss: 0.0491
+Epoch [76/300], Loss: 0.0527, Accuracy: 144%, Val. Loss: 0.0485
+Epoch [77/300], Loss: 0.0518, Accuracy: 148%, Val. Loss: 0.0480
+Epoch [78/300], Loss: 0.0508, Accuracy: 160%, Val. Loss: 0.0478
+Epoch [79/300], Loss: 0.0518, Accuracy: 108%, Val. Loss: 0.0469
+Epoch [80/300], Loss: 0.0514, Accuracy: 80%, Val. Loss: 0.0464
+Epoch [81/300], Loss: 0.0504, Accuracy: 132%, Val. Loss: 0.0461
+Epoch [82/300], Loss: 0.0482, Accuracy: 128%, Val. Loss: 0.0454
+Epoch [83/300], Loss: 0.0490, Accuracy: 108%, Val. Loss: 0.0451
+Epoch [84/300], Loss: 0.0480, Accuracy: 240%, Val. Loss: 0.0452
+Epoch [85/300], Loss: 0.0475, Accuracy: 180%, Val. Loss: 0.0442
+Epoch [86/300], Loss: 0.0464, Accuracy: 164%, Val. Loss: 0.0438
+Epoch [87/300], Loss: 0.0472, Accuracy: 172%, Val. Loss: 0.0439
+Epoch [88/300], Loss: 0.0465, Accuracy: 232%, Val. Loss: 0.0430
+Epoch [89/300], Loss: 0.0461, Accuracy: 144%, Val. Loss: 0.0433
+Epoch [90/300], Loss: 0.0453, Accuracy: 128%, Val. Loss: 0.0438
+Epoch [91/300], Loss: 0.0458, Accuracy: 96%, Val. Loss: 0.0421
+Epoch [92/300], Loss: 0.0459, Accuracy: 152%, Val. Loss: 0.0417
+Epoch [93/300], Loss: 0.0446, Accuracy: 160%, Val. Loss: 0.0413
+Epoch [94/300], Loss: 0.0438, Accuracy: 172%, Val. Loss: 0.0417
+Epoch [95/300], Loss: 0.0428, Accuracy: 128%, Val. Loss: 0.0412
+Epoch [96/300], Loss: 0.0431, Accuracy: 148%, Val. Loss: 0.0413
+Epoch [97/300], Loss: 0.0427, Accuracy: 176%, Val. Loss: 0.0402
+Epoch [98/300], Loss: 0.0436, Accuracy: 232%, Val. Loss: 0.0404
+Epoch [99/300], Loss: 0.0438, Accuracy: 116%, Val. Loss: 0.0706
+Epoch [100/300], Loss: 0.0419, Accuracy: 176%, Val. Loss: 0.0706
+[Checkpoint] Epoch [101/300], Loss: 0.0425, Accuracy: 140%, Val. Loss: 0.0393
+Epoch [102/300], Loss: 0.0421, Accuracy: 196%, Val. Loss: 0.0684
+Epoch [103/300], Loss: 0.0419, Accuracy: 172%, Val. Loss: 0.0702
+Epoch [104/300], Loss: 0.0424, Accuracy: 156%, Val. Loss: 0.0725
+Epoch [105/300], Loss: 0.0415, Accuracy: 180%, Val. Loss: 0.0390
+Epoch [106/300], Loss: 0.0415, Accuracy: 96%, Val. Loss: 0.0384
+Epoch [107/300], Loss: 0.0405, Accuracy: 148%, Val. Loss: 0.0384
+Epoch [108/300], Loss: 0.0401, Accuracy: 180%, Val. Loss: 0.0699
+Epoch [109/300], Loss: 0.0403, Accuracy: 140%, Val. Loss: 0.0387
+Epoch [110/300], Loss: 0.0401, Accuracy: 164%, Val. Loss: 0.0380
+Epoch [111/300], Loss: 0.0413, Accuracy: 136%, Val. Loss: 0.0382
+Epoch [112/300], Loss: 0.0414, Accuracy: 176%, Val. Loss: 0.0386
+Epoch [113/300], Loss: 0.0404, Accuracy: 104%, Val. Loss: 0.0387
+Epoch [114/300], Loss: 0.0391, Accuracy: 120%, Val. Loss: 0.0390
+Epoch [115/300], Loss: 0.0400, Accuracy: 176%, Val. Loss: 0.0369
+Epoch [116/300], Loss: 0.0389, Accuracy: 140%, Val. Loss: 0.0368
+Epoch [117/300], Loss: 0.0394, Accuracy: 156%, Val. Loss: 0.0371
+Epoch [118/300], Loss: 0.0389, Accuracy: 188%, Val. Loss: 0.0374
+Epoch [119/300], Loss: 0.0389, Accuracy: 188%, Val. Loss: 0.0377
+Epoch [120/300], Loss: 0.0401, Accuracy: 140%, Val. Loss: 0.0375
+Epoch [121/300], Loss: 0.0387, Accuracy: 148%, Val. Loss: 0.0368
+Epoch [122/300], Loss: 0.0392, Accuracy: 152%, Val. Loss: 0.0373
+Epoch [123/300], Loss: 0.0394, Accuracy: 164%, Val. Loss: 0.0368
+Epoch [124/300], Loss: 0.0402, Accuracy: 160%, Val. Loss: 0.0373
+Epoch [125/300], Loss: 0.0390, Accuracy: 156%, Val. Loss: 0.0371
+Epoch [126/300], Loss: 0.0389, Accuracy: 144%, Val. Loss: 0.0372
+Epoch [127/300], Loss: 0.0393, Accuracy: 132%, Val. Loss: 0.0379
+Epoch [128/300], Loss: 0.0376, Accuracy: 196%, Val. Loss: 0.0378
+Epoch [129/300], Loss: 0.0378, Accuracy: 120%, Val. Loss: 0.0373
+Epoch [130/300], Loss: 0.0391, Accuracy: 144%, Val. Loss: 0.0367
+Epoch [131/300], Loss: 0.0382, Accuracy: 192%, Val. Loss: 0.0361
+Epoch [132/300], Loss: 0.0379, Accuracy: 220%, Val. Loss: 0.0370
+Epoch [133/300], Loss: 0.0388, Accuracy: 144%, Val. Loss: 0.0376
+Epoch [134/300], Loss: 0.0383, Accuracy: 152%, Val. Loss: 0.0373
+Epoch [135/300], Loss: 0.0382, Accuracy: 180%, Val. Loss: 0.0369
+Epoch [136/300], Loss: 0.0386, Accuracy: 152%, Val. Loss: 0.0371
+Epoch [137/300], Loss: 0.0385, Accuracy: 216%, Val. Loss: 0.0371
+Epoch [138/300], Loss: 0.0384, Accuracy: 216%, Val. Loss: 0.0374
+Epoch [139/300], Loss: 0.0372, Accuracy: 144%, Val. Loss: 0.0361
+Epoch [140/300], Loss: 0.0374, Accuracy: 168%, Val. Loss: 0.0365
+Epoch [141/300], Loss: 0.0392, Accuracy: 176%, Val. Loss: 0.0366
+Epoch [142/300], Loss: 0.0386, Accuracy: 112%, Val. Loss: 0.0367
+Epoch [143/300], Loss: 0.0377, Accuracy: 208%, Val. Loss: 0.0369
+Epoch [144/300], Loss: 0.0377, Accuracy: 168%, Val. Loss: 0.0372
+Epoch [145/300], Loss: 0.0366, Accuracy: 184%, Val. Loss: 0.0374
+Epoch [146/300], Loss: 0.0389, Accuracy: 212%, Val. Loss: 0.0367
+Epoch [147/300], Loss: 0.0370, Accuracy: 120%, Val. Loss: 0.0368
+Epoch [148/300], Loss: 0.0385, Accuracy: 216%, Val. Loss: 0.0362
+Epoch [149/300], Loss: 0.0370, Accuracy: 124%, Val. Loss: 0.0363
+Epoch [150/300], Loss: 0.0370, Accuracy: 132%, Val. Loss: 0.0364
+[Checkpoint] Epoch [151/300], Loss: 0.0378, Accuracy: 200%, Val. Loss: 0.0368
+Epoch [152/300], Loss: 0.0378, Accuracy: 140%, Val. Loss: 0.0362
+Epoch [153/300], Loss: 0.0377, Accuracy: 152%, Val. Loss: 0.0357
+Epoch [154/300], Loss: 0.0379, Accuracy: 148%, Val. Loss: 0.0359
+Epoch [155/300], Loss: 0.0373, Accuracy: 176%, Val. Loss: 0.0360
+Epoch [156/300], Loss: 0.0374, Accuracy: 176%, Val. Loss: 0.0360
+Epoch [157/300], Loss: 0.0387, Accuracy: 192%, Val. Loss: 0.0357
+Epoch [158/300], Loss: 0.0371, Accuracy: 152%, Val. Loss: 0.0359
+Epoch [159/300], Loss: 0.0377, Accuracy: 156%, Val. Loss: 0.0361
+Epoch [160/300], Loss: 0.0379, Accuracy: 108%, Val. Loss: 0.0363
+Epoch [161/300], Loss: 0.0375, Accuracy: 176%, Val. Loss: 0.0365
+Epoch [162/300], Loss: 0.0363, Accuracy: 144%, Val. Loss: 0.0368
+Epoch [163/300], Loss: 0.0367, Accuracy: 216%, Val. Loss: 0.0365
+Epoch [164/300], Loss: 0.0378, Accuracy: 192%, Val. Loss: 0.0360
+Epoch [165/300], Loss: 0.0368, Accuracy: 188%, Val. Loss: 0.0363
+Epoch [166/300], Loss: 0.0369, Accuracy: 128%, Val. Loss: 0.0364
+Epoch [167/300], Loss: 0.0365, Accuracy: 200%, Val. Loss: 0.0365
+Epoch [168/300], Loss: 0.0379, Accuracy: 160%, Val. Loss: 0.0358
+Epoch [169/300], Loss: 0.0372, Accuracy: 200%, Val. Loss: 0.0358
+Epoch [170/300], Loss: 0.0368, Accuracy: 176%, Val. Loss: 0.0358
+Epoch [171/300], Loss: 0.0374, Accuracy: 144%, Val. Loss: 0.0359
+Epoch [172/300], Loss: 0.0370, Accuracy: 192%, Val. Loss: 0.0358
+Epoch [173/300], Loss: 0.0373, Accuracy: 140%, Val. Loss: 0.0359
+Epoch [174/300], Loss: 0.0381, Accuracy: 148%, Val. Loss: 0.0359
+Epoch [175/300], Loss: 0.0374, Accuracy: 224%, Val. Loss: 0.0360
+Epoch [176/300], Loss: 0.0377, Accuracy: 164%, Val. Loss: 0.0360
+Epoch [177/300], Loss: 0.0366, Accuracy: 172%, Val. Loss: 0.0360
+Epoch [178/300], Loss: 0.0374, Accuracy: 140%, Val. Loss: 0.0360
+Epoch [179/300], Loss: 0.0367, Accuracy: 124%, Val. Loss: 0.0359
+Epoch [180/300], Loss: 0.0363, Accuracy: 192%, Val. Loss: 0.0360
+Epoch [181/300], Loss: 0.0360, Accuracy: 168%, Val. Loss: 0.0361
+Epoch [182/300], Loss: 0.0367, Accuracy: 128%, Val. Loss: 0.0360
+Epoch [183/300], Loss: 0.0367, Accuracy: 220%, Val. Loss: 0.0361
+Epoch [184/300], Loss: 0.0360, Accuracy: 120%, Val. Loss: 0.0361
+Epoch [185/300], Loss: 0.0369, Accuracy: 132%, Val. Loss: 0.0361
+Epoch [186/300], Loss: 0.0361, Accuracy: 184%, Val. Loss: 0.0360
+Epoch [187/300], Loss: 0.0373, Accuracy: 184%, Val. Loss: 0.0360
+Epoch [188/300], Loss: 0.0372, Accuracy: 168%, Val. Loss: 0.0360
+Epoch [189/300], Loss: 0.0361, Accuracy: 216%, Val. Loss: 0.0360
+Epoch [190/300], Loss: 0.0366, Accuracy: 196%, Val. Loss: 0.0360
+Epoch [191/300], Loss: 0.0362, Accuracy: 200%, Val. Loss: 0.0360
+Epoch [192/300], Loss: 0.0363, Accuracy: 196%, Val. Loss: 0.0360
+Epoch [193/300], Loss: 0.0362, Accuracy: 164%, Val. Loss: 0.0360
+Epoch [194/300], Loss: 0.0366, Accuracy: 236%, Val. Loss: 0.0360
+Epoch [195/300], Loss: 0.0365, Accuracy: 228%, Val. Loss: 0.0360
+Epoch [196/300], Loss: 0.0373, Accuracy: 116%, Val. Loss: 0.0360
+Epoch [197/300], Loss: 0.0369, Accuracy: 184%, Val. Loss: 0.0360
+Epoch [198/300], Loss: 0.0355, Accuracy: 184%, Val. Loss: 0.0360
+Epoch [199/300], Loss: 0.0368, Accuracy: 208%, Val. Loss: 0.0360
+Epoch [200/300], Loss: 0.0366, Accuracy: 172%, Val. Loss: 0.0360
+[Checkpoint] Epoch [201/300], Loss: 0.0371, Accuracy: 124%, Val. Loss: 0.0360
+Epoch [202/300], Loss: 0.0364, Accuracy: 104%, Val. Loss: 0.0360
+Epoch [203/300], Loss: 0.0374, Accuracy: 168%, Val. Loss: 0.0360
+Epoch [204/300], Loss: 0.0365, Accuracy: 212%, Val. Loss: 0.0360
+Epoch [205/300], Loss: 0.0372, Accuracy: 156%, Val. Loss: 0.0360
+Epoch [206/300], Loss: 0.0371, Accuracy: 180%, Val. Loss: 0.0360
+Epoch [207/300], Loss: 0.0367, Accuracy: 180%, Val. Loss: 0.0360
+Epoch [208/300], Loss: 0.0376, Accuracy: 164%, Val. Loss: 0.0360
+Epoch [209/300], Loss: 0.0360, Accuracy: 120%, Val. Loss: 0.0359
+Epoch [210/300], Loss: 0.0373, Accuracy: 188%, Val. Loss: 0.0360
+Epoch [211/300], Loss: 0.0368, Accuracy: 180%, Val. Loss: 0.0360
+Epoch [212/300], Loss: 0.0375, Accuracy: 168%, Val. Loss: 0.0360
+Epoch [213/300], Loss: 0.0360, Accuracy: 196%, Val. Loss: 0.0360
+Epoch [214/300], Loss: 0.0369, Accuracy: 100%, Val. Loss: 0.0360
+Epoch [215/300], Loss: 0.0364, Accuracy: 192%, Val. Loss: 0.0360
+Epoch [216/300], Loss: 0.0369, Accuracy: 124%, Val. Loss: 0.0359
+Epoch [217/300], Loss: 0.0353, Accuracy: 188%, Val. Loss: 0.0359
+Epoch [218/300], Loss: 0.0362, Accuracy: 160%, Val. Loss: 0.0359
+Epoch [219/300], Loss: 0.0370, Accuracy: 148%, Val. Loss: 0.0359
+Epoch [220/300], Loss: 0.0372, Accuracy: 192%, Val. Loss: 0.0359
+Epoch [221/300], Loss: 0.0364, Accuracy: 148%, Val. Loss: 0.0359
+Epoch [222/300], Loss: 0.0373, Accuracy: 156%, Val. Loss: 0.0359
+Epoch [223/300], Loss: 0.0367, Accuracy: 212%, Val. Loss: 0.0359
+Epoch [224/300], Loss: 0.0367, Accuracy: 160%, Val. Loss: 0.0359
+Epoch [225/300], Loss: 0.0360, Accuracy: 204%, Val. Loss: 0.0359
+Epoch [226/300], Loss: 0.0378, Accuracy: 96%, Val. Loss: 0.0359
+Epoch [227/300], Loss: 0.0372, Accuracy: 176%, Val. Loss: 0.0359
+Epoch [228/300], Loss: 0.0370, Accuracy: 180%, Val. Loss: 0.0359
+Epoch [229/300], Loss: 0.0365, Accuracy: 120%, Val. Loss: 0.0359
+Epoch [230/300], Loss: 0.0367, Accuracy: 164%, Val. Loss: 0.0359
+Epoch [231/300], Loss: 0.0367, Accuracy: 172%, Val. Loss: 0.0359
+Epoch [232/300], Loss: 0.0365, Accuracy: 184%, Val. Loss: 0.0359
+Epoch [233/300], Loss: 0.0362, Accuracy: 220%, Val. Loss: 0.0359
+Epoch [234/300], Loss: 0.0376, Accuracy: 160%, Val. Loss: 0.0359
+Epoch [235/300], Loss: 0.0364, Accuracy: 224%, Val. Loss: 0.0359
+Epoch [236/300], Loss: 0.0375, Accuracy: 160%, Val. Loss: 0.0359
+Epoch [237/300], Loss: 0.0373, Accuracy: 156%, Val. Loss: 0.0359
+Epoch [238/300], Loss: 0.0369, Accuracy: 152%, Val. Loss: 0.0359
+Epoch [239/300], Loss: 0.0375, Accuracy: 76%, Val. Loss: 0.0359
+Epoch [240/300], Loss: 0.0364, Accuracy: 200%, Val. Loss: 0.0359
+Epoch [241/300], Loss: 0.0366, Accuracy: 112%, Val. Loss: 0.0359
+Epoch [242/300], Loss: 0.0363, Accuracy: 88%, Val. Loss: 0.0359
+Epoch [243/300], Loss: 0.0372, Accuracy: 136%, Val. Loss: 0.0359
+Epoch [244/300], Loss: 0.0376, Accuracy: 128%, Val. Loss: 0.0359
+Epoch [245/300], Loss: 0.0364, Accuracy: 164%, Val. Loss: 0.0359
+Epoch [246/300], Loss: 0.0372, Accuracy: 264%, Val. Loss: 0.0359
+Epoch [247/300], Loss: 0.0374, Accuracy: 208%, Val. Loss: 0.0359
+Epoch [248/300], Loss: 0.0372, Accuracy: 140%, Val. Loss: 0.0359
+Epoch [249/300], Loss: 0.0366, Accuracy: 200%, Val. Loss: 0.0359
+Epoch [250/300], Loss: 0.0366, Accuracy: 144%, Val. Loss: 0.0359
+[Checkpoint] Epoch [251/300], Loss: 0.0366, Accuracy: 196%, Val. Loss: 0.0359
+Epoch [252/300], Loss: 0.0368, Accuracy: 140%, Val. Loss: 0.0359
+Epoch [253/300], Loss: 0.0367, Accuracy: 168%, Val. Loss: 0.0359
+Epoch [254/300], Loss: 0.0373, Accuracy: 216%, Val. Loss: 0.0359
+Epoch [255/300], Loss: 0.0374, Accuracy: 156%, Val. Loss: 0.0359
+Epoch [256/300], Loss: 0.0362, Accuracy: 240%, Val. Loss: 0.0359
+Epoch [257/300], Loss: 0.0370, Accuracy: 92%, Val. Loss: 0.0359
+Epoch [258/300], Loss: 0.0376, Accuracy: 128%, Val. Loss: 0.0359
+Epoch [259/300], Loss: 0.0361, Accuracy: 172%, Val. Loss: 0.0359
+Epoch [260/300], Loss: 0.0373, Accuracy: 152%, Val. Loss: 0.0359
+Epoch [261/300], Loss: 0.0371, Accuracy: 160%, Val. Loss: 0.0359
+Epoch [262/300], Loss: 0.0376, Accuracy: 132%, Val. Loss: 0.0359
+Epoch [263/300], Loss: 0.0373, Accuracy: 128%, Val. Loss: 0.0359
+Epoch [264/300], Loss: 0.0375, Accuracy: 208%, Val. Loss: 0.0359
+Epoch [265/300], Loss: 0.0368, Accuracy: 140%, Val. Loss: 0.0359
+Epoch [266/300], Loss: 0.0376, Accuracy: 180%, Val. Loss: 0.0359
+Epoch [267/300], Loss: 0.0374, Accuracy: 168%, Val. Loss: 0.0359
+Epoch [268/300], Loss: 0.0360, Accuracy: 180%, Val. Loss: 0.0359
+Epoch [269/300], Loss: 0.0376, Accuracy: 176%, Val. Loss: 0.0359
+Epoch [270/300], Loss: 0.0364, Accuracy: 188%, Val. Loss: 0.0359
+Epoch [271/300], Loss: 0.0357, Accuracy: 216%, Val. Loss: 0.0359
+Epoch [272/300], Loss: 0.0366, Accuracy: 192%, Val. Loss: 0.0359
+Epoch [273/300], Loss: 0.0364, Accuracy: 212%, Val. Loss: 0.0359
+Epoch [274/300], Loss: 0.0384, Accuracy: 184%, Val. Loss: 0.0359
+Epoch [275/300], Loss: 0.0368, Accuracy: 148%, Val. Loss: 0.0359
+Epoch [276/300], Loss: 0.0380, Accuracy: 132%, Val. Loss: 0.0359
+Epoch [277/300], Loss: 0.0369, Accuracy: 96%, Val. Loss: 0.0359
+Epoch [278/300], Loss: 0.0379, Accuracy: 196%, Val. Loss: 0.0359
+Epoch [279/300], Loss: 0.0368, Accuracy: 144%, Val. Loss: 0.0359
+Epoch [280/300], Loss: 0.0390, Accuracy: 180%, Val. Loss: 0.0359
+Epoch [281/300], Loss: 0.0373, Accuracy: 196%, Val. Loss: 0.0359
+Epoch [282/300], Loss: 0.0367, Accuracy: 136%, Val. Loss: 0.0359
+Epoch [283/300], Loss: 0.0365, Accuracy: 132%, Val. Loss: 0.0359
+Epoch [284/300], Loss: 0.0368, Accuracy: 140%, Val. Loss: 0.0359
+Epoch [285/300], Loss: 0.0381, Accuracy: 124%, Val. Loss: 0.0359
+Epoch [286/300], Loss: 0.0375, Accuracy: 116%, Val. Loss: 0.0359
+Epoch [287/300], Loss: 0.0373, Accuracy: 144%, Val. Loss: 0.0359
+Epoch [288/300], Loss: 0.0375, Accuracy: 144%, Val. Loss: 0.0359
+Epoch [289/300], Loss: 0.0369, Accuracy: 200%, Val. Loss: 0.0359
+Epoch [290/300], Loss: 0.0364, Accuracy: 100%, Val. Loss: 0.0359
+Epoch [291/300], Loss: 0.0371, Accuracy: 176%, Val. Loss: 0.0359
+Epoch [292/300], Loss: 0.0371, Accuracy: 88%, Val. Loss: 0.0359
+Epoch [293/300], Loss: 0.0365, Accuracy: 204%, Val. Loss: 0.0359
+Epoch [294/300], Loss: 0.0366, Accuracy: 140%, Val. Loss: 0.0359
+Epoch [295/300], Loss: 0.0357, Accuracy: 176%, Val. Loss: 0.0359
+Epoch [296/300], Loss: 0.0375, Accuracy: 136%, Val. Loss: 0.0359
+Epoch [297/300], Loss: 0.0382, Accuracy: 156%, Val. Loss: 0.0359
+Epoch [298/300], Loss: 0.0365, Accuracy: 204%, Val. Loss: 0.0359
+Epoch [299/300], Loss: 0.0374, Accuracy: 140%, Val. Loss: 0.0359
+Epoch [300/300], Loss: 0.0366, Accuracy: 180%, Val. Loss: 0.0359

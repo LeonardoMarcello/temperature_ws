@@ -1,0 +1,66 @@
+<launch>
+  <!-- Load Parameters-->
+  <arg name="deactivate_yolo" default="true" doc="Choose whether or not to launch yolo."/>
+  <arg name="deactivate_temperature" default="false" doc="Choose whether or not to launch temperature reader."/>
+  <arg name="deactivate_hand" default="false" doc="Choose whether or not to launch SoftHand controller"/>
+  
+  <!-- Franka -->
+  <arg name="use_real_robot" default="true" doc="Choose whether or not to use the real robort."/>
+  <arg name="robot_ip" default="172.16.0.103" if="$(arg use_real_robot)" doc="The ip which the franka is connected."/>
+  <!-- QB hand -->
+  <arg name="use_specific_serial_port" default="false" doc="Choose whether or not to use a specific serial port."/>
+  <arg name="qb_hand_device" default="/tmp/ttyUSB0" doc="The name of the specific serial port on which the qbhand is connected"/>
+  <!-- temperature driver-->
+  <arg name="temperature_device" default="/dev/ttyACM0" doc="The name of the serial port on which the device is connected"/>
+  <arg name="device_id" default="0" doc="The qb device id (Default = 1, set to 0 to use CIMaIN MAIO2025)"/>
+  <arg name="rate" default="10" doc="The temperature readings rate (Hz) "/>
+  <arg name="alpha" default="1" doc="raw readings exponential filter parameter. alpha in [0,1]"/>
+  <!-- yolo-->
+  <arg name="cam_name" default="/dev/video0" doc="Camera device USB port" />        
+  <!--<arg name="img_topic" default="/usb_cam/image_raw" doc = "Raw image topic name"/>-->
+  <arg name="img_topic" default="/camera/color/image_raw" doc = "Raw image topic name"/>
+  <arg name="out_topic" default="/yolov7" doc = "Yolov7 visualization topic name"/>
+
+
+
+  <!-- Launch -->
+  <!-- franka -->
+  <include file="$(find panda_moveit_config)/launch/franka_control.launch" if="$(arg use_real_robot)">
+        <arg name="load_gripper" value="false" />
+        <arg name="robot_ip" value="$(arg robot_ip)" /> 
+  </include>  
+  <include file="$(find panda_moveit_config)/launch/demo_gazebo.launch" unless="$(arg use_real_robot)">
+        <arg name="load_gripper" value="false" />
+  </include>
+  <!-- qb softHand driver -->  
+  <include file="$(find qb_hand_control)/launch/control_qbhand.launch" unless="$(arg deactivate_hand)">
+      <arg name="standalone" value="true" />
+      <arg name="activate_on_initialization" value="true" />
+      <arg name="use_controller_gui" value="true" />
+  </include>
+
+
+
+
+  <!-- temperature driver  -->
+  <include file="$(find temperature_ros)/launch/temperature.launch" unless="$(arg deactivate_temperature)">
+      <arg name="serial_port_name" value="$(arg temperature_device)" />
+      <arg name="device_id" value="$(arg device_id)" />
+      <arg name="rate" value="$(arg rate)" />
+      <arg name="alpha" value="$(arg alpha)" />
+  </include> 
+
+
+
+  <!-- camera driver -->
+  <!-- <include file="$(find camera_calibration)/launch/rs_camera.launch" unless="$(arg deactivate_yolo)"/> 
+  <include file="$(find usb_cam)/launch/usb_cam-test.launch" unless="$(arg deactivate_yolo)">
+  </include>-->
+  <param name="/usb_cam/video_device" value="$(arg cam_name)" />
+  <!-- yolov7 net  -->
+  <include file="$(find yolov7_ros)/launch/yolov7.launch" unless="$(arg deactivate_yolo)">
+      <arg name="img_topic" value="$(arg img_topic)" />
+      <arg name="out_topic" value="$(arg out_topic)" />
+  </include>
+ 
+</launch>

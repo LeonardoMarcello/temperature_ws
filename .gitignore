@@ -1,4 +1,18 @@
-*
+.catkin_tools
+.vscode
+build/
+devel/
+conf/
+workdir/
 
-!.gitignore
-!src/temperature_ros/*
+src/camera_calibration
+src/franka_ros
+src/panda_controllers
+src/panda_moveit_config
+src/qb_hand_moveit_config
+src/qbdevice-ros
+src/qbhand-ros
+src/realsense2_description
+src/rosbag_to_video-main
+src/yolov7-ros
+src/CMakeLists.txt

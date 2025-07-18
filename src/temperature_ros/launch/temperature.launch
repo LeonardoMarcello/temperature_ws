@@ -1,0 +1,23 @@
+<launch>
+  <arg name="serial_port_name" default="/dev/ttyACM0" doc="The name of the serial port on which the device is connected"/>
+  <arg name="device_id" default="0" doc="The qb device id (Default= 1, set to 0 to use CIMaIN MAIO2025)"/>
+  <arg name="rate" default="50" doc="The temperature readings rate (Hz) "/>
+  <arg name="alpha" default="1" doc="raw readings exponential filter parameter"/>
+  
+    <!-- If device_id is 0, use CIMaIN MAIO2025 hardware-->
+    <node name="cimaina_temperature_node" pkg="temperature_ros" type="cimaina_temperature_node"
+          respawn="false" required="true" output="screen" if="$(eval arg('device_id') == 0)">
+        <param name="serial_port_name" value="$(arg serial_port_name)"/>
+        <param name="rate" value="$(arg rate)"/>
+        <param name="alpha" value="$(arg alpha)"/>
+    </node>
+
+  <!-- Otherwise, use qb device with corresponding id -->
+  <node name="temperature_node" pkg="temperature_ros" type="temperature_node"
+          respawn="false" required="true" output="screen" unless="$(eval arg('device_id') == 0)">
+        <param name="serial_port_name" value="$(arg serial_port_name)"/>
+        <param name="device_id" value="$(arg device_id)"/>
+        <param name="rate" value="$(arg rate)"/>
+        <param name="alpha" value="$(arg alpha)"/>
+  </node>
+</launch>
